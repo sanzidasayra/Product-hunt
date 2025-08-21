@@ -2,19 +2,25 @@
 import Link from "next/link";
 import { useState } from "react";
 import { HiMenu, HiX } from "react-icons/hi";
+import Image from "next/image";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <nav className="w-full bg-white shadow-md sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto py-4 flex justify-between items-center">
-        {/* Logo */}
-        <Link href="/" className="text-2xl font-bold text-blue-600">
-          MyShop
-        </Link>
+      <div className="max-w-7xl mx-auto px-4 lg:px-0 py-4 flex justify-between items-center">
+        <Link href="/" className="flex items-center gap-2">
+  <Image
+    src="/logo.png"    
+    alt="MyShop Logo"
+    width={40}
+    height={40}
+    className="object-contain"
+  />
+  <span className="text-2xl font-bold text-blue-600">MyShop</span>
+</Link>
 
-        {/* Desktop Links */}
         <div className="hidden md:flex gap-6 items-center">
           <Link href="/" className="hover:text-blue-600 transition">
             Home
@@ -33,7 +39,6 @@ const Navbar = () => {
           </Link>
         </div>
 
-        {/* Mobile Menu Button */}
         <div className="md:hidden">
           <button
             onClick={() => setIsOpen(!isOpen)}
@@ -44,7 +49,6 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Menu */}
       {isOpen && (
         <div className="md:hidden bg-white px-6 pb-4">
           <Link href="/" className="block py-2 hover:text-blue-600 transition">

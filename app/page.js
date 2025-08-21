@@ -4,9 +4,11 @@ import ProductHighlights from "./components/ProductHighlights";
 
 export default function Home() {
   return (
-    <div>
+     <>
       <Banner />
+    <div className="max-w-7xl mx-auto">
       <ProductHighlights />
     </div>
+     </>
   );
 }
