@@ -18,8 +18,8 @@ const RegisterForm = () => {
 
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900 px-4">
-      <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md w-full max-w-md sm:px-4 md:px-8 transition-colors duration-300">
+    <div className="bg-gray-100 dark:bg-gray-900 px-4">
+      <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md w-full max-w-xl sm:px-4 md:px-8 transition-colors duration-300">
         <h2 className="text-3xl font-bold text-[#03373D] dark:text-white text-center mb-2">
           Create an Account
         </h2>

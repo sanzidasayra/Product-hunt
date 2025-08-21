@@ -7,19 +7,21 @@ import Image from "next/image";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
+  const handleLinkClick = () => setIsOpen(false);
+
   return (
     <nav className="w-full bg-white shadow-md sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 lg:px-0 py-4 flex justify-between items-center">
-        <Link href="/" className="flex items-center gap-2">
-  <Image
-    src="/logo.png"    
-    alt="MyShop Logo"
-    width={40}
-    height={40}
-    className="object-contain"
-  />
-  <span className="text-2xl font-bold text-rose-700">MyShop</span>
-</Link>
+        <Link href="/" className="flex items-center gap-2" onClick={handleLinkClick}>
+          <Image
+            src="/logo.png"    
+            alt="MyShop Logo"
+            width={40}
+            height={40}
+            className="object-contain"
+          />
+          <span className="text-2xl font-bold text-rose-700">MyShop</span>
+        </Link>
 
         <div className="hidden md:flex gap-6 items-center">
           <Link href="/" className="hover:text-rose-700 transition">
@@ -28,7 +30,7 @@ const Navbar = () => {
           <Link href="/products" className="hover:text-rose-700 transition">
             Products
           </Link>
-          <Link href="/dashboard/add-product" className="hover:text-rose-700 transition">
+          <Link href="/add-product" className="hover:text-rose-700 transition">
             Add Product
           </Link>
           <Link
@@ -55,28 +57,31 @@ const Navbar = () => {
         </div>
       </div>
 
+      {/* Mobile Menu */}
       {isOpen && (
         <div className="md:hidden bg-white px-6 pb-4">
-          <Link href="/" className="block py-2 hover:text-rose-600 transition">
+          <Link href="/" onClick={handleLinkClick} className="block py-2 hover:text-rose-600 transition">
             Home
           </Link>
-          <Link href="/products" className="block py-2 hover:text-rose-600 transition">
+          <Link href="/products" onClick={handleLinkClick} className="block py-2 hover:text-rose-600 transition">
             Products
           </Link>
-          <Link href="/dashboard/add-product" className="block py-2 hover:text-rose-600 transition">
+          <Link href="/add-product" onClick={handleLinkClick} className="block py-2 hover:text-rose-600 transition">
             Add Product
           </Link>
           <Link
             href="/login"
+            onClick={handleLinkClick}
             className="block py-2 px-4 mt-2  bg-rose-700 hover:bg-rose-800 text-white rounded transition"
           >
             Login
           </Link>
           <Link
             href="/register"
+            onClick={handleLinkClick}
             className="block py-2 px-4 mt-2 bg-rose-700 hover:bg-rose-800 text-white rounded transition"
           >
-            Login
+            Register
           </Link>
         </div>
       )}
