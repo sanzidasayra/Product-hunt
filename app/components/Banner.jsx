@@ -27,7 +27,7 @@ const Banner = () => {
     <div className="flex justify-center">
       <Link
         href="/products"
-        className="inline-block px-6 py-3 bg-blue-600 hover:bg-blue-700 transition rounded-full font-semibold shadow-md"
+        className="inline-block px-6 py-3 bg-rose-700 hover:bg-rose-800 transition rounded-full font-semibold shadow-md"
       >
         Shop Now
       </Link>

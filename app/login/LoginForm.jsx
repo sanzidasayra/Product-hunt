@@ -1,43 +1,86 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [loginError, setLoginError] = useState("");
+
+  const togglePasswordVisibility = () => setShowPassword(!showPassword);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!email || !password) {
+      setLoginError("Please enter both email and password.");
+      return;
+    }
     alert(`Email: ${email}, Password: ${password}`);
   };
-
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="bg-white p-6 rounded shadow-md w-full max-w-sm flex flex-col gap-4"
-    >
-      <h2 className="text-2xl font-bold text-center">Login</h2>
-      <input
-        type="email"
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        className="border p-2 rounded"
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        className="border p-2 rounded"
-      />
-      <button
-        type="submit"
-        className="bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
-      >
-        Login
-      </button>
-    </form>
+    <div className="flex items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900 px-4">
+      <div className="bg-white dark:bg-gray-800 p-6 sm:p-8 rounded-xl shadow-lg w-full  transition-colors duration-300">
+        <h2 className="text-3xl font-bold text-[#03373D] dark:text-white text-center mb-2">
+          Welcome to my shop
+        </h2>
+        <p className="text-gray-500 dark:text-gray-300 text-sm text-center mb-6">
+          Login to continue to your account
+        </p>
+
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="input input-bordered w-full py-2 px-3 text-sm bg-white dark:bg-gray-700 dark:text-white border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-700 transition"
+          />
+
+          <div className="relative">
+            <input
+              type={showPassword ? "text" : "password"}
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="input input-bordered w-full py-2 px-3 text-sm bg-white dark:bg-gray-700 dark:text-white border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-700 transition"
+            />
+            <div
+              className="absolute right-3 top-3 cursor-pointer text-gray-700 dark:text-gray-300"
+              onClick={togglePasswordVisibility}
+            >
+              {showPassword ? <FaEyeSlash className="text-xl" /> : <FaEye className="text-xl" />}
+            </div>
+          </div>
+
+          {loginError && <p className="text-red-500 text-sm">{loginError}</p>}
+
+          <div className="text-sm text-right">
+            <Link href="/forgot-password" className="text-rose-600 dark:text-rose-600 hover:underline">
+              Forgot Password?
+            </Link>
+          </div>
+
+          <button
+            type="submit"
+            className="w-full bg-rose-700 hover:bg-rose-800 text-white py-2 rounded-lg text-sm font-medium transition-colors duration-300"
+          >
+            Login
+          </button>
+
+          <p className="text-sm text-center text-gray-700 dark:text-gray-300 mt-2">
+            Don’t have an account?{" "}
+            <Link href="/register" className="text-rose-600 dark:text-blue-400 hover:underline">
+              Sign Up
+            </Link>
+          </p>
+
+          
+        </form>
+      </div>
+    </div>
   );
 };
 

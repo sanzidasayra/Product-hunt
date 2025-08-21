@@ -18,24 +18,30 @@ const Navbar = () => {
     height={40}
     className="object-contain"
   />
-  <span className="text-2xl font-bold text-blue-600">MyShop</span>
+  <span className="text-2xl font-bold text-rose-700">MyShop</span>
 </Link>
 
         <div className="hidden md:flex gap-6 items-center">
-          <Link href="/" className="hover:text-blue-600 transition">
+          <Link href="/" className="hover:text-rose-700 transition">
             Home
           </Link>
-          <Link href="/products" className="hover:text-blue-600 transition">
+          <Link href="/products" className="hover:text-rose-700 transition">
             Products
           </Link>
-          <Link href="/dashboard/add-product" className="hover:text-blue-600 transition">
+          <Link href="/dashboard/add-product" className="hover:text-rose-700 transition">
             Add Product
           </Link>
           <Link
             href="/login"
-            className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
+            className="px-4 py-2 bg-rose-700 text-white rounded hover:bg-rose-800 transition"
           >
             Login
+          </Link>
+          <Link
+            href="/register"
+            className="px-4 py-2 bg-rose-700 text-white rounded hover:bg-rose-800 transition"
+          >
+            Register
           </Link>
         </div>
 
@@ -51,18 +57,24 @@ const Navbar = () => {
 
       {isOpen && (
         <div className="md:hidden bg-white px-6 pb-4">
-          <Link href="/" className="block py-2 hover:text-blue-600 transition">
+          <Link href="/" className="block py-2 hover:text-rose-600 transition">
             Home
           </Link>
-          <Link href="/products" className="block py-2 hover:text-blue-600 transition">
+          <Link href="/products" className="block py-2 hover:text-rose-600 transition">
             Products
           </Link>
-          <Link href="/dashboard/add-product" className="block py-2 hover:text-blue-600 transition">
+          <Link href="/dashboard/add-product" className="block py-2 hover:text-rose-600 transition">
             Add Product
           </Link>
           <Link
             href="/login"
-            className="block py-2 px-4 mt-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
+            className="block py-2 px-4 mt-2  bg-rose-700 hover:bg-rose-800 text-white rounded transition"
+          >
+            Login
+          </Link>
+          <Link
+            href="/register"
+            className="block py-2 px-4 mt-2 bg-rose-700 hover:bg-rose-800 text-white rounded transition"
           >
             Login
           </Link>
