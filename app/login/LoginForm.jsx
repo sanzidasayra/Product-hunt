@@ -3,25 +3,44 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [loginError, setLoginError] = useState("");
+  const router = useRouter();
 
   const togglePasswordVisibility = () => setShowPassword(!showPassword);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoginError("");
+
     if (!email || !password) {
       setLoginError("Please enter both email and password.");
       return;
     }
-    alert(`Email: ${email}, Password: ${password}`);
+
+    // Sign in using NextAuth credentials
+    const result = await signIn("credentials", {
+      redirect: false,
+      email,
+      password,
+    });
+
+    if (result?.error) {
+      setLoginError("Invalid email or password.");
+    } else {
+      // Redirect after successful login
+      router.push("/products");
+    }
   };
+
   return (
-    <div className=" bg-gray-100 ">
+    <div className="bg-gray-100">
       <div className="bg-white p-6 rounded-xl shadow-md w-full max-w-3xl sm:px-4 md:px-8 transition-colors duration-300">
         <h2 className="text-3xl font-bold text-[#03373D] text-center mb-2">
           Welcome to my shop
@@ -70,14 +89,12 @@ const LoginForm = () => {
             Login
           </button>
 
-          <p className="text-sm text-center text-gray-700  mt-2">
+          <p className="text-sm text-center text-gray-700 mt-2">
             Don’t have an account?{" "}
             <Link href="/register" className="text-rose-600 hover:underline">
               Sign Up
             </Link>
           </p>
-
-          
         </form>
       </div>
     </div>

@@ -1,15 +1,16 @@
-import React from 'react'
-import RegisterForm from '../register/RegisterForm'
+"use client";
 
-const page = () => {
+import React from "react";
+import RegisterForm from "../register/RegisterForm";
+
+const RegisterPage = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 p-4">
-        <div className="flex justify-center items-center w-full md:w-1/2 p-6">
-          <RegisterForm />
-          
-        </div>
+    <main className="min-h-screen flex items-center justify-center bg-gray-100 p-4">
+      <div className="w-full md:w-1/2">
+        <RegisterForm />
       </div>
-  )
-}
+    </main>
+  );
+};
 
-export default page
+export default RegisterPage;

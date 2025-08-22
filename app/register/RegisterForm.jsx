@@ -4,17 +4,40 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { useRouter } from "next/navigation";
+
 
 const RegisterForm = () => {
+  const router = useRouter();
+
   const { register, handleSubmit, formState: { errors } } = useForm();
   const [showPassword, setShowPassword] = useState(false);
 
   const togglePasswordVisibility = () => setShowPassword(!showPassword);
 
-  const onSubmit = (data) => {
-    console.log(data);
-    alert(`Registered with: ${JSON.stringify(data)}`);
-  };
+const onSubmit = async (data) => {
+  try {
+    const res = await fetch("/api/auth/register", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+
+    const result = await res.json();
+
+    if (!res.ok) {
+      alert(result.error || "Registration failed");
+      return;
+    }
+
+    alert(result.message);
+    // Redirect to login page after successful registration
+    router.push("/login");
+  } catch (err) {
+    console.error(err);
+    alert("Something went wrong");
+  }
+};
 
 
   return (
