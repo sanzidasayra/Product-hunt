@@ -11,19 +11,20 @@ export async function POST(req) {
     }
 
     // Get product data from request body
-    const { name, description, price } = await req.json();
+    const { name, description, price, image } = await req.json();
 
     if (!name || !description || !price) {
       return new Response("Missing fields", { status: 400 });
     }
 
     const client = await clientPromise;
-    const db = client.db("myshop"); // Atlas DB name same as here
+    const db = client.db("myshop");
 
     const result = await db.collection("products").insertOne({
       name,
       description,
       price: parseFloat(price),
+      image: image || "", // store empty string if no image provided
       createdBy: session.user.email,
       createdAt: new Date(),
     });

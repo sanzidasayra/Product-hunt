@@ -6,43 +6,49 @@ import { useForm } from "react-hook-form";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 
-
 const RegisterForm = () => {
   const router = useRouter();
-
   const { register, handleSubmit, formState: { errors } } = useForm();
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [successMsg, setSuccessMsg] = useState("");
+  const [errorMsg, setErrorMsg] = useState("");
 
   const togglePasswordVisibility = () => setShowPassword(!showPassword);
 
-const onSubmit = async (data) => {
-  try {
-    const res = await fetch("/api/auth/register", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
-    });
+  const onSubmit = async (data) => {
+    setLoading(true);
+    setErrorMsg("");
+    setSuccessMsg("");
 
-    const result = await res.json();
+    try {
+      const res = await fetch("/api/auth/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
 
-    if (!res.ok) {
-      alert(result.error || "Registration failed");
-      return;
+      const result = await res.json();
+
+      if (!res.ok) {
+        setErrorMsg(result.error || "Registration failed");
+        setLoading(false);
+        return;
+      }
+
+      setSuccessMsg("Registration successful! Redirecting to login...");
+      setTimeout(() => router.push("/login"), 1500);
+    } catch (err) {
+      console.error(err);
+      setErrorMsg("Something went wrong");
+    } finally {
+      setLoading(false);
     }
-
-    alert(result.message);
-    // Redirect to login page after successful registration
-    router.push("/login");
-  } catch (err) {
-    console.error(err);
-    alert("Something went wrong");
-  }
-};
-
+  };
 
   return (
-    <div className="bg-gray-100  px-4">
-      <div className="bg-white p-6 rounded-xl shadow-md w-full max-w-xl sm:px-4 md:px-8 transition-colors duration-300">
+    <div className="bg-gray-100 px-4">
+      <div className="bg-white p-8 rounded-xl shadow-md w-full max-w-xl transition-colors duration-300">
         <h2 className="text-3xl font-bold text-[#03373D] text-center mb-2">
           Create an Account
         </h2>
@@ -63,7 +69,7 @@ const onSubmit = async (data) => {
             type="email"
             {...register("email", { required: "Email is required" })}
             placeholder="Email"
-            className="input input-bordered w-full py-2 px-3 text-sm bg-white border-gray-300rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-700 transition"
+            className="input input-bordered w-full py-2 px-3 text-sm bg-white border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-700 transition"
           />
           {errors.email && <p className="text-red-500 text-sm">{errors.email.message}</p>}
 
@@ -94,11 +100,18 @@ const onSubmit = async (data) => {
           </div>
           {errors.password && <p className="text-red-500 text-sm">{errors.password.message}</p>}
 
+          {/* Error / Success Messages */}
+          {errorMsg && <p className="text-red-500 text-sm text-center">{errorMsg}</p>}
+          {successMsg && <p className="text-green-600 text-sm text-center">{successMsg}</p>}
+
           <button
             type="submit"
-            className="btn bg-rose-700 hover:bg-rose-800 text-white w-full mt-4 py-2 text-sm rounded-lg transition-colors duration-300"
+            className={`btn bg-rose-700 hover:bg-rose-800 text-white w-full mt-4 py-2 text-sm rounded-lg transition-colors duration-300 ${
+              loading ? "opacity-70 cursor-not-allowed" : ""
+            }`}
+            disabled={loading}
           >
-            Sign Up
+            {loading ? "Signing Up..." : "Sign Up"}
           </button>
 
           <p className="text-sm mt-2 text-center text-gray-700">

@@ -3,9 +3,11 @@ import Link from "next/link";
 import { useState } from "react";
 import { HiMenu, HiX } from "react-icons/hi";
 import Image from "next/image";
+import { signOut, useSession } from "next-auth/react";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { data: session } = useSession();
 
   const handleLinkClick = () => setIsOpen(false);
 
@@ -49,18 +51,29 @@ const Navbar = () => {
 
         {/* Right Side Buttons */}
         <div className="hidden md:flex gap-4 items-center">
-          <Link
-            href="/login"
-            className="px-4 py-2 bg-rose-700 text-white rounded hover:bg-rose-800 transition"
-          >
-            Login
-          </Link>
-          <Link
-            href="/register"
-            className="px-4 py-2 bg-rose-700 text-white rounded hover:bg-rose-800 transition"
-          >
-            Register
-          </Link>
+          {!session ? (
+            <>
+              <Link
+                href="/login"
+                className="px-4 py-2 bg-rose-700 text-white rounded hover:bg-rose-800 transition"
+              >
+                Login
+              </Link>
+              <Link
+                href="/register"
+                className="px-4 py-2 bg-rose-700 text-white rounded hover:bg-rose-800 transition"
+              >
+                Register
+              </Link>
+            </>
+          ) : (
+            <button
+              onClick={() => signOut()}
+              className="px-4 py-2 bg-rose-700 text-white rounded hover:bg-rose-800 transition"
+            >
+              Logout
+            </button>
+          )}
         </div>
 
         {/* Mobile Menu Button */}
@@ -98,20 +111,35 @@ const Navbar = () => {
           >
             Dashboard
           </Link>
-          <Link
-            href="/login"
-            onClick={handleLinkClick}
-            className="block py-2 px-4 mt-2 bg-rose-700 hover:bg-rose-800 text-white rounded transition"
-          >
-            Login
-          </Link>
-          <Link
-            href="/register"
-            onClick={handleLinkClick}
-            className="block py-2 px-4 mt-2 bg-rose-700 hover:bg-rose-800 text-white rounded transition"
-          >
-            Register
-          </Link>
+
+          {!session ? (
+            <>
+              <Link
+                href="/login"
+                onClick={handleLinkClick}
+                className="block py-2 px-4 mt-2 bg-rose-700 hover:bg-rose-800 text-white rounded transition"
+              >
+                Login
+              </Link>
+              <Link
+                href="/register"
+                onClick={handleLinkClick}
+                className="block py-2 px-4 mt-2 bg-rose-700 hover:bg-rose-800 text-white rounded transition"
+              >
+                Register
+              </Link>
+            </>
+          ) : (
+            <button
+              onClick={() => {
+                signOut();
+                handleLinkClick();
+              }}
+              className="block py-2 px-4 mt-2 bg-rose-700 hover:bg-rose-800 text-white rounded transition"
+            >
+              Logout
+            </button>
+          )}
         </div>
       )}
     </nav>

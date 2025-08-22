@@ -7,11 +7,12 @@ import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
 const LoginForm = () => {
+  const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [loginError, setLoginError] = useState("");
-  const router = useRouter();
+  const [loading, setLoading] = useState(false);
 
   const togglePasswordVisibility = () => setShowPassword(!showPassword);
 
@@ -24,12 +25,16 @@ const LoginForm = () => {
       return;
     }
 
+    setLoading(true);
+
     // Sign in using NextAuth credentials
     const result = await signIn("credentials", {
       redirect: false,
       email,
       password,
     });
+
+    setLoading(false);
 
     if (result?.error) {
       setLoginError("Invalid email or password.");
@@ -40,16 +45,17 @@ const LoginForm = () => {
   };
 
   return (
-    <div className="bg-gray-100">
-      <div className="bg-white p-6 rounded-xl shadow-md w-full max-w-3xl sm:px-4 md:px-8 transition-colors duration-300">
+    <div>
+      <div className="bg-white p-8 rounded-2xl shadow-xl w-full max-w-md transition-colors duration-300">
         <h2 className="text-3xl font-bold text-[#03373D] text-center mb-2">
-          Welcome to my shop
+          Welcome Back!
         </h2>
         <p className="text-gray-500 text-sm text-center mb-6">
-          Login to continue to your account
+          Login to your account
         </p>
 
         <form onSubmit={handleSubmit} className="space-y-4">
+          {/* Email */}
           <input
             type="email"
             placeholder="Email"
@@ -58,6 +64,7 @@ const LoginForm = () => {
             className="input input-bordered w-full py-2 px-3 text-sm bg-white border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-700 transition"
           />
 
+          {/* Password */}
           <div className="relative">
             <input
               type={showPassword ? "text" : "password"}
@@ -74,21 +81,28 @@ const LoginForm = () => {
             </div>
           </div>
 
-          {loginError && <p className="text-red-500 text-sm">{loginError}</p>}
+          {/* Error message */}
+          {loginError && <p className="text-red-500 text-sm text-center">{loginError}</p>}
 
+          {/* Forgot password */}
           <div className="text-sm text-right">
             <Link href="/forgot-password" className="text-rose-600 hover:underline">
               Forgot Password?
             </Link>
           </div>
 
+          {/* Submit button */}
           <button
             type="submit"
-            className="w-full bg-rose-700 hover:bg-rose-800 text-white py-2 rounded-lg text-sm font-medium transition-colors duration-300"
+            disabled={loading}
+            className={`w-full bg-rose-700 hover:bg-rose-800 text-white py-2 rounded-lg text-sm font-medium transition-colors duration-300 ${
+              loading ? "opacity-70 cursor-not-allowed" : ""
+            }`}
           >
-            Login
+            {loading ? "Logging in..." : "Login"}
           </button>
 
+          {/* Sign up link */}
           <p className="text-sm text-center text-gray-700 mt-2">
             Don’t have an account?{" "}
             <Link href="/register" className="text-rose-600 hover:underline">
