@@ -40,10 +40,10 @@ const Navbar = () => {
             Products
           </Link>
           <Link
-            href="/add-product"
+            href="/dashboard/add-product"
             className="text-black hover:text-rose-700 transition"
           >
-            Add Product
+            Dashboard
           </Link>
         </div>
 
@@ -92,11 +92,11 @@ const Navbar = () => {
             Products
           </Link>
           <Link
-            href="/add-product"
+            href="/dashboard/add-product"
             onClick={handleLinkClick}
             className="block py-2 text-black hover:text-rose-600 transition"
           >
-            Add Product
+            Dashboard
           </Link>
           <Link
             href="/login"
