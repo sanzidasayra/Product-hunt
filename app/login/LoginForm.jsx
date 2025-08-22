@@ -44,8 +44,8 @@ const LoginForm = () => {
 
   return (
     <div className="w-full h-full flex flex-col justify-center">
-      <div className="bg-white p-10 md:p-12 rounded-3xl shadow-2xl w-full max-w-md transition-colors duration-300">
-        <h2 className="text-4xl font-extrabold text-rose-700 text-center mb-4">
+      <div className="bg-white p-10 md:p-12 rounded-3xl shadow-xl w-full max-w-md transition-colors duration-300">
+        <h2 className="text-2xl font-extrabold text-rose-700 text-center mb-2">
           Welcome Back!
         </h2>
         <p className="text-gray-500 text-center mb-8">
@@ -59,7 +59,9 @@ const LoginForm = () => {
             placeholder="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="input input-bordered w-full py-3 px-4 text-sm bg-white border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-rose-700 transition"
+            className="w-full py-3 px-4 text-sm bg-white border border-rose-100 rounded-xl 
+focus:outline-none focus:ring-2 focus:ring-rose-700 focus:border-rose-700 transition"
+
           />
 
           {/* Password */}
@@ -69,7 +71,9 @@ const LoginForm = () => {
               placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="input input-bordered w-full py-3 px-4 text-sm bg-white border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-rose-700 transition"
+              className="w-full py-3 px-4 text-sm bg-white border border-rose-100 rounded-xl 
+focus:outline-none focus:ring-2 focus:ring-rose-700 focus:border-rose-700 transition"
+
             />
             <div
               className="absolute right-4 top-3 cursor-pointer text-gray-700"

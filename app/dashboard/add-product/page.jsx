@@ -31,7 +31,7 @@ export default function AddProductPage() {
   }
 
   return (
-    <main className="min-h-screen flex items-center justify-center bg-gradient-to-r from-rose-50 to-gray-100 p-4">
+    <main className="min-h-screen flex items-center justify-center p-4">
       <div className="w-full max-w-2xl bg-white rounded-2xl shadow-xl p-8 flex flex-col items-center">
         {/* Header */}
         <div className="text-center mb-6">
@@ -47,11 +47,6 @@ export default function AddProductPage() {
         <div className="w-full">
           <AddProductForm />
         </div>
-
-        {/* Optional Footer */}
-        <p className="text-gray-400 text-sm mt-6 text-center">
-          &copy; {new Date().getFullYear()} MyShop. All rights reserved.
-        </p>
       </div>
     </main>
   );

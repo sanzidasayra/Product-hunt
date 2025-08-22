@@ -53,7 +53,7 @@ export default function AddProductForm() {
         value={name}
         onChange={(e) => setName(e.target.value)}
         placeholder="Product Name"
-        className="w-full py-2 px-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-rose-500 shadow-sm transition"
+        className="w-full py-2 px-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-rose-700 shadow-sm transition"
         required
       />
 
@@ -63,7 +63,7 @@ export default function AddProductForm() {
         onChange={(e) => setDescription(e.target.value)}
         placeholder="Description"
         rows={4}
-        className="w-full py-2 px-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-rose-500 shadow-sm transition resize-none"
+        className="w-full py-2 px-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-rose-700 shadow-sm transition resize-none"
         required
       />
 
@@ -75,7 +75,7 @@ export default function AddProductForm() {
         placeholder="Price"
         min="0"
         step="0.01"
-        className="w-full py-2 px-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-rose-500 shadow-sm transition"
+        className="w-full py-2 px-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-rose-700 shadow-sm transition"
         required
       />
 
@@ -85,7 +85,7 @@ export default function AddProductForm() {
         value={image}
         onChange={(e) => setImage(e.target.value)}
         placeholder="Product Image URL"
-        className="w-full py-2 px-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-rose-500 shadow-sm transition"
+        className="w-full py-2 px-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-rose-700 shadow-sm transition"
       />
 
       {/* Preview Image */}

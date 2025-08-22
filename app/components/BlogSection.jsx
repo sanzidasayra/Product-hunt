@@ -5,9 +5,9 @@ import blogPosts from "../data/blogData";
 
 const BlogSection = () => {
   return (
-    <section className="mt-20 mb-10">
-      <div className="max-w-7xl mx-auto px-4">
-        <h2 className="text-4xl font-bold text-rose-700 mb-8 text-center">Blog & Tips</h2>
+    <section className="lg:mt-20 mt-10 mb-10">
+      <div className="max-w-7xl mx-auto px-4 lg:px-0">
+        <h2 className="lg:text-5xl text-4xl font-bold text-rose-700 mb-8 text-center">Blog & Tips</h2>
         <div className="grid md:grid-cols-4 gap-8">
           {blogPosts.map((post) => (
             <div

@@ -4,12 +4,19 @@ import { useState } from "react";
 import { HiMenu, HiX } from "react-icons/hi";
 import Image from "next/image";
 import { signOut, useSession } from "next-auth/react";
+import { usePathname } from "next/navigation"; // <-- import
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { data: session } = useSession();
+  const pathname = usePathname(); // <-- get current path
 
   const handleLinkClick = () => setIsOpen(false);
+
+  const linkClasses = (href) =>
+    `text-black hover:text-rose-700 transition ${
+      pathname === href ? "text-rose-700 font-bold" : ""
+    }`;
 
   return (
     <nav className="w-full bg-white shadow-md sticky top-0 z-50">
@@ -32,19 +39,13 @@ const Navbar = () => {
 
         {/* Center Menu */}
         <div className="hidden md:flex gap-6 items-center absolute left-1/2 transform -translate-x-1/2">
-          <Link href="/" className="text-black hover:text-rose-700 transition">
+          <Link href="/" className={linkClasses("/")}>
             Home
           </Link>
-          <Link
-            href="/products"
-            className="text-black hover:text-rose-700 transition"
-          >
+          <Link href="/products" className={linkClasses("/products")}>
             Products
           </Link>
-          <Link
-            href="/dashboard/add-product"
-            className="text-black hover:text-rose-700 transition"
-          >
+          <Link href="/dashboard/add-product" className={linkClasses("/dashboard/add-product")}>
             Dashboard
           </Link>
         </div>
@@ -67,33 +68,29 @@ const Navbar = () => {
               </Link>
             </>
           ) : (
-       <div className="flex items-center gap-3 relative group">
-  {/* User Photo */}
-  {session.user.photo && (
-    <div className="w-10 h-10 relative rounded-full overflow-hidden flex-shrink-0">
-      <Image
-        src={session.user.photo}
-        alt={session.user.name}
-        fill
-        className="object-cover"
-      />
-    </div>
-  )}
+            <div className="flex items-center gap-3 relative group">
+              {session.user.photo && (
+                <div className="w-10 h-10 relative rounded-full overflow-hidden flex-shrink-0">
+                  <Image
+                    src={session.user.photo}
+                    alt={session.user.name}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              )}
 
-  {/* Logout Button */}
-  <button
-    onClick={() => signOut()}
-    className="px-4 py-2 bg-rose-700 text-white rounded hover:bg-rose-800 transition"
-  >
-    Logout
-  </button>
+              <button
+                onClick={() => signOut()}
+                className="px-4 py-2 bg-rose-700 text-white rounded hover:bg-rose-800 transition"
+              >
+                Logout
+              </button>
 
-  {/* Tooltip with User Name */}
-  <span className="absolute top-12 left-1/6 transform -translate-x-1/2 bg-gray-800 text-white text-sm px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
-    {session.user.name}
-  </span>
-</div>
-
+              <span className="absolute top-12 left-1/6 transform -translate-x-1/2 bg-gray-800 text-white text-sm px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                {session.user.name}
+              </span>
+            </div>
           )}
         </div>
 
@@ -110,25 +107,25 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="md:hidden bg-white px-6 pb-4 flex flex-col items-center text-center">
+        <div className="md:hidden bg-white px-6 pb-4 flex flex-col items-start text-left">
           <Link
             href="/"
             onClick={handleLinkClick}
-            className="block py-2 text-black hover:text-rose-600 transition"
+            className={linkClasses("/")}
           >
             Home
           </Link>
           <Link
             href="/products"
             onClick={handleLinkClick}
-            className="block py-2 text-black hover:text-rose-600 transition"
+            className={linkClasses("/products")}
           >
             Products
           </Link>
           <Link
             href="/dashboard/add-product"
             onClick={handleLinkClick}
-            className="block py-2 text-black hover:text-rose-600 transition"
+            className={linkClasses("/dashboard/add-product")}
           >
             Dashboard
           </Link>
@@ -151,7 +148,7 @@ const Navbar = () => {
               </Link>
             </>
           ) : (
-            <div className="flex flex-col items-center gap-2 mt-2">
+            <div className="flex flex-col items-start gap-2 mt-2">
               {session.user.photo && (
                 <Image
                   src={session.user.photo}
