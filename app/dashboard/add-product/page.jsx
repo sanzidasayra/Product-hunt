@@ -21,7 +21,7 @@ export default function AddProductPage() {
 
   if (loading || status === "loading") {
     return (
-      <div className="flex items-center justify-center min-h-screen bg-gray-100">
+      <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-rose-50 to-gray-100">
         <div className="text-center">
           <div className="w-12 h-12 border-4 border-rose-700 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
           <p className="text-gray-700">Checking authentication...</p>
@@ -31,25 +31,28 @@ export default function AddProductPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-4xl mx-auto">
-        {/* Welcome Header */}
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-extrabold text-gray-900">
+    <main className="min-h-screen flex items-center justify-center bg-gradient-to-r from-rose-50 to-gray-100 p-4">
+      <div className="w-full max-w-2xl bg-white rounded-2xl shadow-xl p-8 flex flex-col items-center">
+        {/* Header */}
+        <div className="text-center mb-6">
+          <h1 className="text-3xl font-extrabold text-rose-700">
             Welcome, {session.user.name}!
           </h1>
           <p className="mt-2 text-gray-600">
-            Use the form below to add a new product to your shop.
+            Add a new product to your shop using the form below.
           </p>
         </div>
 
-        {/* Form Card */}
-        <div className="bg-white shadow-lg rounded-xl p-8">
+        {/* Add Product Form */}
+        <div className="w-full">
           <AddProductForm />
         </div>
 
-   
+        {/* Optional Footer */}
+        <p className="text-gray-400 text-sm mt-6 text-center">
+          &copy; {new Date().getFullYear()} MyShop. All rights reserved.
+        </p>
       </div>
-    </div>
+    </main>
   );
 }

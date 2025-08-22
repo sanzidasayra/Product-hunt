@@ -11,7 +11,7 @@ const ProductHighlights = async () => {
     .collection("products")
     .find()
     .sort({ createdAt: -1 })
-    .limit(3)
+    .limit(8)
     .toArray();
 
   return (
@@ -25,11 +25,11 @@ const ProductHighlights = async () => {
       </div>
 
       {/* Product Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 px-4 lg:px-0">
         {products.map((product) => (
           <div
             key={product._id}
-            className="border rounded-xl shadow hover:shadow-2xl transition flex flex-col overflow-hidden bg-white"
+            className="border border-rose-100 rounded-xl shadow hover:shadow-2xl transition flex flex-col overflow-hidden bg-white"
           >
             {/* Product Image */}
             {product.image ? (

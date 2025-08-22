@@ -67,12 +67,33 @@ const Navbar = () => {
               </Link>
             </>
           ) : (
-            <button
-              onClick={() => signOut()}
-              className="px-4 py-2 bg-rose-700 text-white rounded hover:bg-rose-800 transition"
-            >
-              Logout
-            </button>
+       <div className="flex items-center gap-3 relative group">
+  {/* User Photo */}
+  {session.user.photo && (
+    <div className="w-10 h-10 relative rounded-full overflow-hidden flex-shrink-0">
+      <Image
+        src={session.user.photo}
+        alt={session.user.name}
+        fill
+        className="object-cover"
+      />
+    </div>
+  )}
+
+  {/* Logout Button */}
+  <button
+    onClick={() => signOut()}
+    className="px-4 py-2 bg-rose-700 text-white rounded hover:bg-rose-800 transition"
+  >
+    Logout
+  </button>
+
+  {/* Tooltip with User Name */}
+  <span className="absolute top-12 left-1/6 transform -translate-x-1/2 bg-gray-800 text-white text-sm px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+    {session.user.name}
+  </span>
+</div>
+
           )}
         </div>
 
@@ -130,15 +151,26 @@ const Navbar = () => {
               </Link>
             </>
           ) : (
-            <button
-              onClick={() => {
-                signOut();
-                handleLinkClick();
-              }}
-              className="block py-2 px-4 mt-2 bg-rose-700 hover:bg-rose-800 text-white rounded transition"
-            >
-              Logout
-            </button>
+            <div className="flex flex-col items-center gap-2 mt-2">
+              {session.user.photo && (
+                <Image
+                  src={session.user.photo}
+                  alt={session.user.name}
+                  width={35}
+                  height={35}
+                  className="rounded-full object-cover"
+                />
+              )}
+              <button
+                onClick={() => {
+                  signOut();
+                  handleLinkClick();
+                }}
+                className="block py-2 px-4 bg-rose-700 hover:bg-rose-800 text-white rounded transition"
+              >
+                Logout
+              </button>
+            </div>
           )}
         </div>
       )}
