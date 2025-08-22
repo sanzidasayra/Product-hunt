@@ -27,7 +27,6 @@ const LoginForm = () => {
 
     setLoading(true);
 
-    // Sign in using NextAuth credentials
     const result = await signIn("credentials", {
       redirect: false,
       email,
@@ -39,29 +38,28 @@ const LoginForm = () => {
     if (result?.error) {
       setLoginError("Invalid email or password.");
     } else {
-      // Redirect after successful login
       router.push("/products");
     }
   };
 
   return (
-    <div>
-      <div className="bg-white p-8 rounded-2xl shadow-xl w-full max-w-md transition-colors duration-300">
-        <h2 className="text-3xl font-bold text-[#03373D] text-center mb-2">
+    <div className="w-full h-full flex flex-col justify-center">
+      <div className="bg-white p-10 md:p-12 rounded-3xl shadow-2xl w-full max-w-md transition-colors duration-300">
+        <h2 className="text-4xl font-extrabold text-rose-700 text-center mb-4">
           Welcome Back!
         </h2>
-        <p className="text-gray-500 text-sm text-center mb-6">
-          Login to your account
+        <p className="text-gray-500 text-center mb-8">
+          Log in to your account and manage your products.
         </p>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-6">
           {/* Email */}
           <input
             type="email"
             placeholder="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="input input-bordered w-full py-2 px-3 text-sm bg-white border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-700 transition"
+            className="input input-bordered w-full py-3 px-4 text-sm bg-white border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-rose-700 transition"
           />
 
           {/* Password */}
@@ -71,13 +69,13 @@ const LoginForm = () => {
               placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="input input-bordered w-full py-2 px-3 text-sm bg-white border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-700 transition"
+              className="input input-bordered w-full py-3 px-4 text-sm bg-white border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-rose-700 transition"
             />
             <div
-              className="absolute right-3 top-3 cursor-pointer text-gray-700"
+              className="absolute right-4 top-3 cursor-pointer text-gray-700"
               onClick={togglePasswordVisibility}
             >
-              {showPassword ? <FaEyeSlash className="text-xl" /> : <FaEye className="text-xl" />}
+              {showPassword ? <FaEyeSlash size={20} /> : <FaEye size={20} />}
             </div>
           </div>
 
@@ -95,7 +93,7 @@ const LoginForm = () => {
           <button
             type="submit"
             disabled={loading}
-            className={`w-full bg-rose-700 hover:bg-rose-800 text-white py-2 rounded-lg text-sm font-medium transition-colors duration-300 ${
+            className={`w-full bg-rose-700 hover:bg-rose-800 text-white py-3 rounded-xl text-sm font-medium transition-colors duration-300 ${
               loading ? "opacity-70 cursor-not-allowed" : ""
             }`}
           >
@@ -103,9 +101,9 @@ const LoginForm = () => {
           </button>
 
           {/* Sign up link */}
-          <p className="text-sm text-center text-gray-700 mt-2">
+          <p className="text-sm text-center text-gray-700 mt-4">
             Don’t have an account?{" "}
-            <Link href="/register" className="text-rose-600 hover:underline">
+            <Link href="/register" className="text-rose-600 hover:underline font-medium">
               Sign Up
             </Link>
           </p>
