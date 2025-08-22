@@ -12,9 +12,14 @@ const Navbar = () => {
   return (
     <nav className="w-full bg-white shadow-md sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 lg:px-0 py-4 flex justify-between items-center">
-        <Link href="/" className="flex items-center gap-2" onClick={handleLinkClick}>
+        {/* Logo */}
+        <Link
+          href="/"
+          className="flex items-center gap-2"
+          onClick={handleLinkClick}
+        >
           <Image
-            src="/logo.png"    
+            src="/logo.png"
             alt="MyShop Logo"
             width={40}
             height={40}
@@ -23,16 +28,27 @@ const Navbar = () => {
           <span className="text-2xl font-bold text-rose-700">MyShop</span>
         </Link>
 
-        <div className="hidden md:flex gap-6 items-center">
-          <Link href="/" className="hover:text-rose-700 transition">
+        {/* Center Menu */}
+        <div className="hidden md:flex gap-6 items-center absolute left-1/2 transform -translate-x-1/2">
+          <Link href="/" className="text-black hover:text-rose-700 transition">
             Home
           </Link>
-          <Link href="/products" className="hover:text-rose-700 transition">
+          <Link
+            href="/products"
+            className="text-black hover:text-rose-700 transition"
+          >
             Products
           </Link>
-          <Link href="/add-product" className="hover:text-rose-700 transition">
+          <Link
+            href="/add-product"
+            className="text-black hover:text-rose-700 transition"
+          >
             Add Product
           </Link>
+        </div>
+
+        {/* Right Side Buttons */}
+        <div className="hidden md:flex gap-4 items-center">
           <Link
             href="/login"
             className="px-4 py-2 bg-rose-700 text-white rounded hover:bg-rose-800 transition"
@@ -47,6 +63,7 @@ const Navbar = () => {
           </Link>
         </div>
 
+        {/* Mobile Menu Button */}
         <div className="md:hidden">
           <button
             onClick={() => setIsOpen(!isOpen)}
@@ -59,20 +76,32 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="md:hidden bg-white px-6 pb-4">
-          <Link href="/" onClick={handleLinkClick} className="block py-2 hover:text-rose-600 transition">
+        <div className="md:hidden bg-white px-6 pb-4 flex flex-col items-center text-center">
+          <Link
+            href="/"
+            onClick={handleLinkClick}
+            className="block py-2 text-black hover:text-rose-600 transition"
+          >
             Home
           </Link>
-          <Link href="/products" onClick={handleLinkClick} className="block py-2 hover:text-rose-600 transition">
+          <Link
+            href="/products"
+            onClick={handleLinkClick}
+            className="block py-2 text-black hover:text-rose-600 transition"
+          >
             Products
           </Link>
-          <Link href="/add-product" onClick={handleLinkClick} className="block py-2 hover:text-rose-600 transition">
+          <Link
+            href="/add-product"
+            onClick={handleLinkClick}
+            className="block py-2 text-black hover:text-rose-600 transition"
+          >
             Add Product
           </Link>
           <Link
             href="/login"
             onClick={handleLinkClick}
-            className="block py-2 px-4 mt-2  bg-rose-700 hover:bg-rose-800 text-white rounded transition"
+            className="block py-2 px-4 mt-2 bg-rose-700 hover:bg-rose-800 text-white rounded transition"
           >
             Login
           </Link>
