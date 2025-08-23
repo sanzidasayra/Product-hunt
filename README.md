@@ -13,29 +13,23 @@ MyShop is a simple e-commerce demo application built with Next.js 15 (App Router
 
 ---
 
-## Core Features
+## Blog & Tips
 
-1. **Landing Page (`/`)**  
-   - Sections: Navbar, Hero, Product Highlights, Footer  
-   - Navigation links to Login and Products pages  
-   - Publicly accessible  
+MyShop also provides educational content for users:
 
-2. **Login Page (`/login`)**  
-   - NextAuth.js authentication (Google/social login or credentials)  
-   - Redirects to `/products` after successful login  
+- **Top 5 Headphone Tips for Music Lovers** – Maintain sound quality and longevity  
+- **How to Choose the Right Headphones** – Quick guide for lifestyle fit  
+- **Caring for Your Headphones** – Simple maintenance tips  
+- **Best Wireless Headphones in 2025** – Latest wireless headphones overview  
 
-3. **Product List Page (`/products`)**  
-   - Publicly accessible  
-   - Displays list of products with name, description, price, and a "Details" button  
+---
 
-4. **Product Details Page (`/products/[id]`)**  
-   - Shows full details of a single product  
-   - Publicly accessible  
+## Navigation
 
-5. **Protected Add Product Page (`/dashboard/add-product`)**  
-   - Only accessible to authenticated users  
-   - Form to add a new product to the database  
-   - Redirects unauthenticated users to login  
+- **Home** – Landing page with banner and featured products  
+- **Products** – Browse all products available  
+- **Dashboard** – Access your account and manage products  
+- **Login/Logout** – User authentication  
 
 ---
 
