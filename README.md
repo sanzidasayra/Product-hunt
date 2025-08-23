@@ -1,36 +1,57 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# MyShop - Next.js 15 E-commerce Demo
 
-## Getting Started
+## 🌐 Live Demo
+🔗 [Visit MyShop](https://product-hunt-ruby.vercel.app/)
 
-First, run the development server:
+## 🖼 Screenshots
+![Landing Page](https://i.ibb.co.com/C3vyhWbP/Screenshot-2025-08-23-060423.png)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Short Project Description
+MyShop is a simple e-commerce demo application built with Next.js 15 (App Router). It allows users to browse products, view product details, and manage products after logging in using NextAuth.js authentication. The app includes public pages (landing, product list, product details) and a protected dashboard for adding new products.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## Core Features
 
-To learn more about Next.js, take a look at the following resources:
+1. **Landing Page (`/`)**  
+   - Sections: Navbar, Hero, Product Highlights, Footer  
+   - Navigation links to Login and Products pages  
+   - Publicly accessible  
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+2. **Login Page (`/login`)**  
+   - NextAuth.js authentication (Google/social login or credentials)  
+   - Redirects to `/products` after successful login  
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+3. **Product List Page (`/products`)**  
+   - Publicly accessible  
+   - Displays list of products with name, description, price, and a "Details" button  
 
-## Deploy on Vercel
+4. **Product Details Page (`/products/[id]`)**  
+   - Shows full details of a single product  
+   - Publicly accessible  
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+5. **Protected Add Product Page (`/dashboard/add-product`)**  
+   - Only accessible to authenticated users  
+   - Form to add a new product to the database  
+   - Redirects unauthenticated users to login  
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## Optional Enhancements
+- Loading spinner when submitting forms  
+- Toast notifications on successful product addition  
+- Light/Dark theme toggle  
+
+---
+
+## Technologies Used
+- **Next.js 15** (App Router)  
+- **NextAuth.js** for authentication  
+- **MongoDB** (or any mock backend) for storing product data  
+- Tailwind CSS for styling  
+- Route Handlers (`/api`) for backend operations  
+
+---
+
