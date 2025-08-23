@@ -33,13 +33,6 @@ MyShop also provides educational content for users:
 
 ---
 
-## Optional Enhancements
-- Loading spinner when submitting forms  
-- Toast notifications on successful product addition  
-- Light/Dark theme toggle  
-
----
-
 ## Technologies Used
 - **Next.js 15** (App Router)  
 - **NextAuth.js** for authentication  
